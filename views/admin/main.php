@@ -30,7 +30,7 @@
         <div class="row">
             <?php
             if (isset($view)) {
-                require_once PATH_VIEW . $view . '.php';
+                require_once PATH_VIEW_ADMIN . $view . '.php';
             }
             ?>
         </div>
