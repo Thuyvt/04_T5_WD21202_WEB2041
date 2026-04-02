@@ -33,5 +33,5 @@ if ($mode == 'client') {
     // Kiểm tra đang nhập tài khoản có quyền admin hay không
     // Nếu không có quyền admin đẩy sang routes của client
     # require điều hướng của admin
-    require_once '.routes/admin.php';
+    require_once './routes/admin.php';
 }

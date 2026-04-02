@@ -1,0 +1,32 @@
+<div class="row">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Danh mục</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Mô tả</th>
+            <th>Ngày tạo</th>
+            <th>Hành động</th>
+        </tr>
+        <tr>
+            <td><?= $pro['id'] ?></td>
+            <td><?= $pro['name'] ?></td>
+            <td><?= $pro['category_name'] ?></td>
+            <td><?= $pro['price'] ?></td>
+            <td><?= $pro['quantity'] ?></td>
+            <td><?= $pro['description'] ?></td>
+            <td><?= $pro['created_at'] ?></td>
+            <td>
+                <a href="<?= BASE_URL_ADMIN . '&action=product-show&id=' . $pro['id'] ?>"
+                    class="btn btn-info">Xem</a>
+                <a href=""
+                    class="btn btn-warning ms-1 me-1 mb-1 mt-1">Sửa</a>
+                <a href=""
+                    onclick="return confirm('Có chắc xóa không?')"
+                    class="btn btn-danger">Xóa</a>
+            </td>
+        </tr>
+    </table>
+</div>
