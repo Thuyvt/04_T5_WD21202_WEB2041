@@ -1,3 +1,4 @@
+<a class="btn btn-primary" href="<?= BASE_URL_ADMIN .'&action=product-create'?>">Tạo mới</a>
 <div class="row">
     <table class="table">
         <tr>
@@ -22,7 +23,7 @@
             <td>
                 <a href="<?= BASE_URL_ADMIN . '&action=product-show&id=' . $pro['id'] ?>"
                     class="btn btn-info">Xem</a>
-                <a href=""
+                <a href="<?= BASE_URL_ADMIN . '&action=product-edit&id=' . $pro['id'] ?>"
                     class="btn btn-warning ms-1 me-1 mb-1 mt-1">Sửa</a>
                 <a href="<?= BASE_URL_ADMIN . '&action=product-delete&id=' . $pro['id'] ?>"
                     onclick="return confirm('Có chắc xóa không?')"

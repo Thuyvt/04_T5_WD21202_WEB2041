@@ -50,4 +50,44 @@ class ProductModel extends BaseModel {
         $stmt->execute(['id' => $id]);
     }
 
+    // Lưu dữ liệu vào csdl
+    public function insert($data) {
+        // Lưu dữ liệu vào bảng products
+        $sql = "INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `quantity`, `description`, `created_at`) 
+        VALUES (NULL, ?, ?, ?, ?, ?, ? );";
+        $stmt= $this->pdo->prepare($sql);
+        $stmt->execute([$data['category_id'], $data['name'],  $data['price'], 
+        $data['quantity'],  $data['description'], date('Y-m-d')]);
+
+        // Lưu dữ liệu vào bảng product-images
+        if($data['img_cover'] != null) {
+            $sql = "INSERT INTO `product_images` (`id`, `product_id`, `image_url`, `is_main`) VALUES 
+             (NULL, ?, ?, '1');";
+            $stmt= $this->pdo->prepare($sql);
+            $stmt->execute([$this->pdo->lastInsertId(), $data['img_cover']]);
+        }
+    }
+
+    // Cập nhật dữ liệu mới
+    public function update($data, $id) {
+        // Cập nhật dữ liệu vào bảng products
+        $sql = "UPDATE `products` SET `category_id` = ?, `name` = ?, 
+        `price` = ? , `quantity` = ?, `description` = ? WHERE `products`.`id` = ?;";
+        $stmt= $this->pdo->prepare($sql);
+        $stmt->execute([$data['category_id'], $data['name'],  $data['price'], 
+        $data['quantity'],  $data['description'], $id ]);
+        if ($data['img_cover'] != null) {
+            // xóa ảnh cũ
+            $sql = "DELETE FROM product_images WHERE product_id = ?";
+            $stmt= $this->pdo->prepare($sql);
+            $stmt->execute([$id]);
+
+            // thêm ảnh mới
+            $sql = "INSERT INTO `product_images` (`id`, `product_id`, `image_url`, `is_main`) VALUES 
+             (NULL, ?, ?, '1');";
+            $stmt= $this->pdo->prepare($sql);
+            $stmt->execute([$id, $data['img_cover']]);
+        }
+
+    }
 }

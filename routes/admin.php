@@ -10,4 +10,7 @@ match ($action) {
     'product-create' => (new ProductController)->create(), // Hiển thị trang tạo mới
     'product-edit' => (new ProductController)->edit(), // Hiển thị trang cập nhật
     'product-delete' => (new ProductController)->delete(), // Thực hiện xóa sản phẩm
+    'product-store' => (new ProductController)->store(), // Lưu dữ liệu vào CSDL
+    'product-update' => (new ProductController)->update(), // Cập nhật dữ liệu vào CSDL
+
 };
